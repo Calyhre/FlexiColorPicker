@@ -62,7 +62,7 @@
         slide = $('svg', { xmlns: 'http://www.w3.org/2000/svg', version: '1.1', width: '100%', height: '100%' },
                   [
                       $('defs', {},
-                        $('linearGradient', { id: 'gradient-hsv', x1: '0%', y1: '100%', x2: '0%', y2: '0%'},
+                        $('linearGradient', { id: 'gradient-hsv', x1: '100%', y1: '0%', x2: '0%', y2: '0%'},
                           [
                               $('stop', { offset: '0%', 'stop-color': '#FF0000', 'stop-opacity': '1' }),
                               $('stop', { offset: '13%', 'stop-color': '#FF00FF', 'stop-opacity': '1' }),
@@ -187,7 +187,7 @@
         return function(evt) {
             evt = evt || window.event;
             var mouse = mousePosition(evt);
-            ctx.h = mouse.y / slideElement.offsetHeight * 360 + hueOffset;
+            ctx.h = mouse.x / slideElement.offsetWidth * 360 + hueOffset;
             var pickerColor = hsv2rgb({ h: ctx.h, s: 1, v: 1 });
             var c = hsv2rgb({ h: ctx.h, s: ctx.s, v: ctx.v });
             pickerElement.style.backgroundColor = pickerColor.hex;
@@ -421,14 +421,14 @@
      * @param {object} mousePicker Coordinates of the mouse cursor in the picker area.
      */
     ColorPicker.positionIndicators = function(slideIndicator, pickerIndicator, mouseSlide, mousePicker) {
-        
+
         if (mouseSlide) {
-            slideIndicator.style.top = (mouseSlide.y - slideIndicator.offsetHeight/2) + 'px';
+            slideIndicator.style.left = (mouseSlide.x - slideIndicator.offsetWidth/2) + 'px';
         }
         if (mousePicker) {
             pickerIndicator.style.top = (mousePicker.y - pickerIndicator.offsetHeight/2) + 'px';
             pickerIndicator.style.left = (mousePicker.x - pickerIndicator.offsetWidth/2) + 'px';
-        } 
+        }
     };
 
     /**
